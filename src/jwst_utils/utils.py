@@ -118,7 +118,7 @@ def create_data_dict(fitls: list, name:list | None = None, check_header:bool = F
 def optical_veocity(wave: np.ndarray, header:dict, restwave: float = 1.644, c:float = 3.e5):
 
     '''
-    Convert wavelength array to optical velocity.
+    Convert wavelength array to optical velocity (units - km/s).
     Parameters:
     -----------
     wave : 1D array
@@ -243,7 +243,9 @@ def calc_spec(data:np.ndarray, header:dict):
 
     return wave, flux
 
-def plot_line_spectrum(wave:np.ndarray, header: dict, flux:np.ndarray, xlim:tuple, ylim:tuple, text:tuple = ('1.644', 'FeII'), restwave:float = 1.644, plot_all_spec:bool = False, savefig:bool = False, save_name:str = 'FeII1644_spectrum.png') -> None:
+def plot_line_spectrum(wave:np.ndarray, header: dict, flux:np.ndarray, xlim:tuple, ylim:tuple, 
+                       text:tuple = ('1.644', 'FeII'), restwave:float = 1.644, plot_all_spec:bool = False,
+                        savefig:bool = False, save_name:str = 'FeII1644_spectrum.png') -> None:
     
     '''
     Plot the specific emmission line's spectrum or all spectrum. Remember to specify the rest wavelength in the optical_velocity function.
@@ -313,7 +315,8 @@ def plot_line_spectrum(wave:np.ndarray, header: dict, flux:np.ndarray, xlim:tupl
     if savefig == True:
         fig.savefig(save_name)
 
-def calc_cont(wave:np.ndarray,flux:np.ndarray, niter:int =3, boxsize:int = 9, exclude:list = None, threshold: float =0.998, offset=0., spike_threshold:float =None):
+def calc_cont(wave:np.ndarray,flux:np.ndarray, niter:int =3, boxsize:int = 9, exclude:list = None, 
+              threshold: float =0.998, offset=0., spike_threshold:float =None):
     '''2025Fall_ISM_Project
     Calculate the continuum of a spectrum using an iterative median filtering method and Savitzky-Golay smoothing.
     Parameters:
